@@ -6,10 +6,14 @@ provider:
   stage: ${opt:stage}
   region: ${opt:region}
 
+package:
+ include:
+   - lib/
+
 functions:
   handle:
     handler: slackbot.handle
     events:
       - http:
-        path: handle
-        method: get
+          path: handle
+          method: get
