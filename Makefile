@@ -3,8 +3,12 @@ ifndef STAGE
 endif
 
 deps-master:
+	cd master && \
+	npm install .
 
 deps-worker:
+	cd worker && \
+	npm install .
 
 deps: deps-master deps-worker
 
