@@ -12,4 +12,4 @@ package:
 
 functions:
   check:
-    handler: sitechecker.check
+    handler: lib/sitechecker.check

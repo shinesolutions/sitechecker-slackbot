@@ -12,7 +12,7 @@ package:
 
 functions:
   handle:
-    handler: slackbot.handle
+    handler: lib/slackbot.handle
     events:
       - http:
           path: handle
