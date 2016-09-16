@@ -1,0 +1,11 @@
+service: sitechecker-slackbot-worker
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  stage: ${opt:stage}
+  region: ${opt:region}
+
+functions:
+  check:
+    handler: sitechecker.check

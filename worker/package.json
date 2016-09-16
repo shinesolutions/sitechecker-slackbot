@@ -1,0 +1,34 @@
+{
+  "name": "sitechecker-slackbot-worker",
+  "description": "",
+  "keywords": [],
+  "version": "0.0.1",
+  "private": true,
+  "homepage": "http://github.com/shinesolutions/sitechecker-slackbot",
+  "author": "Shine Solutions <opensource@shinesolutions.com> (http://shinesolutions.com)",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/shinesolutions/sitechecker-slackbot.git"
+  },
+  "bugs": {
+    "url": "http://github.com/shinesolutions/sitechecker-slackbot/issues"
+  },
+  "directories": {
+    "lib": "./lib"
+  },
+  "dependencies": {
+    "bagofrequest": "^0.1.4"
+  },
+  "devDependencies": {
+  },
+  "scripts": {},
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "licenses": [
+    {
+      "type": "APACHE 2.0",
+      "url": "http://github.com/shinesolutions/sitechecker-slackbot/raw/master/LICENSE"
+    }
+  ]
+}

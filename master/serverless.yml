@@ -1,0 +1,15 @@
+service: sitechecker-slackbot-master
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  stage: ${opt:stage}
+  region: ${opt:region}
+
+functions:
+  handle:
+    handler: slackbot.handle
+    events:
+      - http:
+        path: handle
+        method: get
