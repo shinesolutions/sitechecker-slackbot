@@ -6,6 +6,10 @@ provider:
   stage: ${opt:stage}
   region: ${opt:region}
 
+package:
+ include:
+   - lib/
+
 functions:
   check:
     handler: sitechecker.check
