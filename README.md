@@ -4,6 +4,10 @@ TODO
 Usage
 -----
 
+Install [Serverless](https://serverless.com/):
+
+    make tools
+
 Download service dependencies:
 
     make deps

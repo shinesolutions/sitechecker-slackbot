@@ -46,4 +46,7 @@ remove-workers:
 
 remove: remove-master remove-workers
 
-.PHONY: deploy deploy-master deploy-workers deps deps-master deps-worker remove remote-master remove-workers
+tools:
+	npm install serverless -g
+
+.PHONY: deploy deploy-master deploy-workers deps deps-master deps-worker remove remote-master remove-workers tools
