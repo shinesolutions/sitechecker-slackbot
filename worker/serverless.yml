@@ -13,3 +13,6 @@ package:
 functions:
   check:
     handler: lib/sitechecker.check
+
+plugins:
+  - serverless-offline

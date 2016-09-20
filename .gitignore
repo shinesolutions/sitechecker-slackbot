@@ -1,3 +1,4 @@
 .bob
 node_modules
 .serverless
+.idea

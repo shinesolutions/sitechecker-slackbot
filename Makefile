@@ -49,4 +49,12 @@ remove: remove-master remove-workers
 tools:
 	npm install serverless -g
 
-.PHONY: deploy deploy-master deploy-workers deps deps-master deps-worker remove remote-master remove-workers tools
+start-master:
+	cd master && \
+	serverless offline --stage $(STAGE) --region us-east-1
+
+start-worker:
+	cd worker && \
+	serverless offline --stage $(STAGE) --region us-east-1
+
+.PHONY: deploy deploy-master deploy-workers deps deps-master deps-worker remove remote-master remove-workers tools start-master start-worker
