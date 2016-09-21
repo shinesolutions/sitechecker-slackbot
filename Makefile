@@ -2,6 +2,14 @@ ifndef STAGE
 	STAGE = prod
 endif
 
+clean-master:
+	rm -rf master/.serverless master/node_modules
+
+clean-worker:
+	rm -rf worker/.serverless worker/node_modules
+
+clean: clean-master clean-worker
+
 deps-master:
 	cd master && \
 	npm install .
@@ -57,4 +65,4 @@ start-worker:
 	cd worker && \
 	serverless offline --stage $(STAGE) --region us-east-1
 
-.PHONY: deploy deploy-master deploy-workers deps deps-master deps-worker remove remote-master remove-workers tools start-master start-worker
+.PHONY: clean clean-master clean-worker deploy deploy-master deploy-workers deps deps-master deps-worker remove remote-master remove-workers tools start-master start-worker
