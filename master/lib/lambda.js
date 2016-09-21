@@ -1,5 +1,6 @@
 'use strict';
 
-const slackbot = require('./slackbot');
+const manager = require('./manager');
+const parser = require('./parser');
 
-module.exports.handle = (event, context, cb) => slackbot.run(event.url, cb);
+module.exports.handle = (event, context, cb) => manager.distribute(parser.parse(event), cb);
