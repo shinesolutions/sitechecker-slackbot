@@ -1,7 +1,10 @@
 'use strict';
 
 function distribute(url, cb) {
-  cb(null, 'PLACHOLDER ' + url);
+  var result = {
+    text: 'PLACEHOLDER ' + url
+  };
+  cb(null, result);
 }
 
 exports.distribute = distribute
