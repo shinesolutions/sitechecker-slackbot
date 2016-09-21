@@ -12,7 +12,8 @@ package:
 
 functions:
   check:
-    handler: lib/sitechecker.check
+    handler: lib/lambda.handle
+    timeout: 60
 
 plugins:
   - serverless-offline

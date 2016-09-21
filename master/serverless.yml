@@ -12,7 +12,8 @@ package:
 
 functions:
   handle:
-    handler: lib/slackbot.handle
+    handler: lib/lambda.handle
+    timeout: 90
     events:
       - http:
           path: handle
