@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "async": "^2.0.1",
-    "aws-sdk": "^2.6.4"
+    "aws-sdk": "^2.6.4",
+    "speakeasy-nlp": "^0.2.2"
   },
   "devDependencies": {
     "serverless-offline": "git+https://github.com/dherault/serverless-offline.git/#serverless_v1"
