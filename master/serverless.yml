@@ -8,6 +8,7 @@ provider:
 
 package:
  include:
+   - conf/
    - lib/
 
 functions:
@@ -18,6 +19,9 @@ functions:
       - http:
           path: handle
           method: post
+      - http:
+          path: handle
+          method: get
 
 plugins:
   - serverless-offline

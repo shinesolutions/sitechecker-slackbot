@@ -1,6 +1,5 @@
 'use strict';
 
-const manager = require('./manager');
-const parser = require('./parser');
+const bot = require('./bot');
 
-module.exports.handle = (event, context, cb) => manager.distribute(parser.parse(event), cb);
+module.exports.handle = (event, context, cb) => bot.interact(event, cb);
