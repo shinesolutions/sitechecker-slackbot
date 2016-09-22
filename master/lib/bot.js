@@ -12,7 +12,7 @@ function interact(data, cb) {
   }
 
   var trigger = util.format('%s ', data.trigger_word);
-  var text = data.text.replace(trigger, '')
+  var text = data.text.replace(trigger, '');
   var url = parse(text);
   distribute(url, report(url, cb));
 }
