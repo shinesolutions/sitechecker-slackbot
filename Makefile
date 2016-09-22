@@ -20,6 +20,14 @@ deps-worker:
 
 deps: deps-master deps-worker
 
+test-master:
+	jshint master/lib
+
+test-worker:
+	jshint worker/lib
+
+test: test-master test-worker
+
 deploy-master:
 	cd master && \
 	serverless deploy --stage $(STAGE) --region us-east-1
@@ -55,7 +63,7 @@ remove-workers:
 remove: remove-master remove-workers
 
 tools:
-	npm install serverless -g
+	npm install jshint serverless -g
 
 start-master:
 	cd master && \
@@ -65,4 +73,4 @@ start-worker:
 	cd worker && \
 	serverless offline --stage $(STAGE) --region us-east-1
 
-.PHONY: clean clean-master clean-worker deploy deploy-master deploy-workers deps deps-master deps-worker remove remote-master remove-workers tools start-master start-worker
+.PHONY: clean clean-master clean-worker deploy deploy-master deploy-workers deps deps-master deps-worker remove remote-master remove-workers tools test test-master test-worker start-master start-worker
