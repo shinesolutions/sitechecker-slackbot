@@ -1,5 +1,3 @@
-'use strict';
-
 const config = require('../conf/config.json');
 const req = require('bagofrequest');
 
@@ -18,4 +16,4 @@ function check(url, cb) {
   req.request(config.method, url, opts, cb);
 }
 
-exports.check = check
+exports.check = check;
