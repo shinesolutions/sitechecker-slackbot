@@ -1,5 +1,6 @@
 'use strict';
 
+const config = require('../conf/config.json');
 const req = require('bagofrequest');
 
 function check(url, cb) {
@@ -7,14 +8,14 @@ function check(url, cb) {
   console.log('Checking URL %s', url);
 
   var opts = {
-    timeout: 30000,
+    timeout: config.timeout,
     handlers: {
       '2xx': function (result, cb) {
         cb(null, result);
       }
     }
   };
-  req.request('get', url, opts, cb);
+  req.request(config.method, url, opts, cb);
 }
 
 exports.check = check
