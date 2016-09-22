@@ -1,5 +1,3 @@
-'use strict';
-
 const bot = require('./bot');
 
 module.exports.handle = (event, context, cb) => bot.interact(event, cb);

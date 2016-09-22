@@ -1,5 +1,3 @@
-'use strict';
-
 const async = require('async');
 const config = require('../conf/config.json');
 const nlp = require('speakeasy-nlp');
@@ -67,7 +65,7 @@ function report(url, cb) {
       });
       cb(null, slack.success(messages.join('\n')));
     }
-  }
+  };
 }
 
-exports.interact = interact
+exports.interact = interact;
