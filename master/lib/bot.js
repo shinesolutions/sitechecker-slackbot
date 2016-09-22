@@ -11,7 +11,9 @@ function interact(data, cb) {
     cb(null, slack.error(message));
   }
 
-  var url = parse(data.text.replace(data.trigger_word, ''));
+  var trigger = util.format('%s ', data.trigger_word);
+  var text = data.text.replace(trigger, '')
+  var url = parse(text);
   distribute(url, report(url, cb));
 }
 
@@ -57,7 +59,7 @@ function report(url, cb) {
       Object.keys(results).forEach(function (key) {
 
         var result = results[key];
-        var status = (result.statusCode.match(/^2??$/)) ? 'accessible' : 'inaccessible';
+        var status = (result.statusCode.toString().match(/^2??/)) ? 'accessible' : 'inaccessible';
         messages.push(util.format('%s is %s from %s', url, status, key));
       });
       cb(null, slack.success(messages.join('\n')));
