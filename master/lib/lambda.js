@@ -1,3 +1,3 @@
 const bot = require('./bot');
 
-module.exports.handle = (event, context, cb) => bot.interact(event, cb);
+module.exports.handle = (event, context, cb) => bot.interact(event.query, cb);

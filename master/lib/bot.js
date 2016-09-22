@@ -6,9 +6,6 @@ const util = require('util');
 
 function interact(data, cb) {
 
-  // // TODO: remove later, only for serverless-offline
-  // data = data.query;
-
   if (config.allowedTokens.length > 0 && config.allowedTokens.indexOf(data.token) === -1) {
     var message = 'Your Slack app token is not recognised by SiteChecker server.';
     cb(null, slack.error(message));
@@ -33,7 +30,7 @@ function parse(message) {
   return url;
 }
 
-// Check site across multiple regions by distributing the task
+// Check site across multiple regions in parallel by distributing the task
 // to a Lambda function on each region.
 function distribute(url, cb) {
 
@@ -60,7 +57,7 @@ function report(url, cb) {
       Object.keys(results).forEach(function (key) {
 
         var result = results[key];
-        var status = (result.statusCode === 200) ? 'accessible' : 'inaccessible';
+        var status = (result.statusCode.match(/^2??$/)) ? 'accessible' : 'inaccessible';
         messages.push(util.format('%s is %s from %s', url, status, key));
       });
       cb(null, slack.success(messages.join('\n')));
