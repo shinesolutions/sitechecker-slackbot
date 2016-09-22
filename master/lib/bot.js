@@ -7,14 +7,18 @@ const util = require('util');
 function interact(data, cb) {
 
   if (config.allowedTokens.length > 0 && config.allowedTokens.indexOf(data.token) === -1) {
+
     var message = 'Your Slack app token is not recognised by SiteChecker server.';
     cb(null, slack.error(message));
-  }
 
-  var trigger = util.format('%s ', data.trigger_word);
-  var text = data.text.replace(trigger, '');
-  var url = parse(text);
-  distribute(url, report(url, cb));
+  } else {
+
+    var trigger = util.format('%s ', data.trigger_word);
+    var text = data.text.replace(trigger, '');
+    var url = parse(text);
+    distribute(url, report(url, cb));
+
+  }
 }
 
 // Parse message text and identify URL.
