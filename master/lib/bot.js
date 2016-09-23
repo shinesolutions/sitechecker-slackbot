@@ -22,7 +22,7 @@ function interact(data, cb) {
     } else {
 
       console.error('Unable to parse URL from text %s', text);
-      cb(null, slack.error('I\'m sorry, I don\'t understand your message.'));
+      cb(null, slack.error('I\'m sorry, there is no valid website to check in your message.'));
 
     }
   }
@@ -34,11 +34,13 @@ function parse(message) {
   console.log('Parsing message "%s"', message);
 
   var classification = nlp.classify(message);
-  var subject = classification.subject.split(' ');
-
   var url;
-  if (subject[0].match(/https?\:\/\//)) {
-    url = slack.parseUrl(subject[0]);
+
+  if (classification.subject) {
+    var subject = classification.subject.split(' ');
+    if (subject[0].match(/https?\:\/\//)) {
+      url = slack.parseUrl(subject[0]);
+    }
   }
   return url;
 }
