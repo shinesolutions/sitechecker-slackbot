@@ -5,6 +5,11 @@
 SiteChecker Slackbot
 --------------------
 
+Architecture
+------------
+
+[![Architecture Diagram](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/architecture.jpg)](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/architecture.jpg)
+
 Usage
 -----
 
