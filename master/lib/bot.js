@@ -1,4 +1,5 @@
 const async = require('async');
+const aws = require('aws-sdk');
 const config = require('../conf/config.json');
 const nlp = require('speakeasy-nlp');
 const slack = require('./slack');
@@ -8,7 +9,8 @@ function interact(data, cb) {
 
   if (config.allowedTokens.length > 0 && config.allowedTokens.indexOf(data.token) === -1) {
 
-    var message = 'Your Slack app token is not recognised by SiteChecker server.';
+    console.error('Unrecognised Slack app token %s', data.token);
+    var message = 'Your Slack app token is not recognised by SiteChecker Slackbot server.';
     cb(null, slack.error(message));
 
   } else {
@@ -23,6 +25,8 @@ function interact(data, cb) {
 
 // Parse message text and identify URL.
 function parse(message) {
+
+  console.log('Parsing message "%s"', message);
 
   var classification = nlp.classify(message);
   var subject = classification.subject.split(' ');
@@ -44,7 +48,26 @@ function distribute(url, cb) {
 
   config.regions.forEach(function (region) {
     function task(cb) {
-      cb(null, { statusCode: 200 }); // TODO: execute task on a real lambda
+
+      console.log('Distributing task to region %s', region.name);
+
+      var lambda = new aws.Lambda({ region: region.name });
+
+      var params = {
+        FunctionName: 'sitechecker-slackbot-worker-prod-check', // TODO: pass stage
+        InvocationType: 'RequestResponse',
+        Payload: JSON.stringify({ url: url })
+      };
+
+      lambda.invoke(params, function (err, result) {
+        if (err) {
+          var message = util.format('Unable to check URL %s in region %s due to error %s', url, region.name, err.message);
+          cb(null, { status: 'error', message: message });
+        } else {
+          cb(null, JSON.parse(result.Payload));
+        }
+      });
+
     }
     tasks[region.desc] = task;
   });
@@ -55,16 +78,28 @@ function distribute(url, cb) {
 // Summarise results from all Lambda functions into a report.
 function report(url, cb) {
   return function(err, results) {
+
     if (err) {
+
+      console.error('Unable to generate report due to error %s', err.message);
       cb(slack.error(err.message));
+
     } else {
 
+      console.log('Generating report');
       var messages = [];
       Object.keys(results).forEach(function (key) {
 
         var result = results[key];
-        var status = (result.statusCode.toString().match(/^2??/)) ? 'accessible' : 'inaccessible';
-        messages.push(util.format('%s is %s from %s', url, status, key));
+
+        var status = undefined;
+        if (result.status && result.status === 'error') {
+          status = 'inaccessible';
+        } else {
+          status = (result.statusCode.toString().match(/^2??/)) ? 'accessible' : 'inaccessible';
+        }
+        message = util.format('%s is %s from %s', url, status, key);
+        messages.push(message);
       });
       cb(null, slack.success(messages.join('\n')));
     }
