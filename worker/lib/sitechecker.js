@@ -8,7 +8,7 @@ function check(url, cb) {
   var opts = {
     timeout: config.timeout,
     handlers: {
-      '2xx': function (result, cb) {
+      'xxx': function (result, cb) {
         cb(null, result);
       }
     }
