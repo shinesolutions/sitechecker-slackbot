@@ -10,8 +10,7 @@ function interact(data, cb) {
   if (config.allowedTokens.length > 0 && config.allowedTokens.indexOf(data.token) === -1) {
 
     console.error('Unrecognised Slack app token %s', data.token);
-    var message = 'Your Slack app token is not recognised by SiteChecker Slackbot server.';
-    cb(null, slack.error(message));
+    cb(null, slack.error('Your Slack app token is not recognised by SiteChecker Slackbot server.'));
 
   } else {
 
@@ -23,8 +22,7 @@ function interact(data, cb) {
     } else {
 
       console.error('Unable to parse URL from text %s', text);
-      var message = 'I\'m sorry, I don\'t understand your message.';
-      cb(null, slack.error(message));
+      cb(null, slack.error('I\'m sorry, I don\'t understand your message.'));
 
     }
   }
@@ -58,8 +56,10 @@ function distribute(url, cb) {
 
       var lambda = new aws.Lambda({ region: region.name });
 
+      var stage = process.env.AWS_LAMBDA_FUNCTION_NAME.replace(/^sitechecker\-slackbot\-master\-/, '').replace(/-handle$/, '');
+
       var params = {
-        FunctionName: 'sitechecker-slackbot-worker-prod-check', // TODO: pass stage
+        FunctionName: util.format('sitechecker-slackbot-worker-%s-check', stage), // TODO: pass stage
         InvocationType: 'RequestResponse',
         Payload: JSON.stringify({ url: url })
       };
