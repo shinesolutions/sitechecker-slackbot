@@ -5,6 +5,8 @@
 SiteChecker Slackbot
 --------------------
 
+[![Sample Interaction Screenshot](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/sample_interaction.jpg)](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/sample_interaction.jpg)
+
 Architecture
 ------------
 
