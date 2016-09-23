@@ -92,7 +92,7 @@ function report(url, cb) {
 
         var result = results[key];
 
-        var status = undefined;
+        var status;
         if (result.status && result.status === 'error') {
           status = 'inaccessible';
         } else {
