@@ -1,0 +1,7 @@
+{
+  "body": {
+      "token": "sometoken",
+      "text": "sitechecker: Is amazon.com up?",
+      "trigger_word": "sitechecker:"
+  }
+}
