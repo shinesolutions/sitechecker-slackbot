@@ -1,7 +1,7 @@
 {
   "body": {
       "token": "sometoken",
-      "text": "sitechecker: Is amazon.com up?",
+      "text": "sitechecker: Is <http://amazon.com|amazon.com> up?",
       "trigger_word": "sitechecker:"
   }
 }
