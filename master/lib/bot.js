@@ -18,8 +18,15 @@ function interact(data, cb) {
     var trigger = util.format('%s ', data.trigger_word);
     var text = data.text.replace(trigger, '');
     var url = parse(text);
-    distribute(url, report(url, cb));
+    if (url) {
+      distribute(url, report(url, cb));
+    } else {
 
+      console.error('Unable to parse URL from text %s', text);
+      var message = 'I\'m sorry, I don\'t understand your message.';
+      cb(null, slack.error(message));
+
+    }
   }
 }
 
@@ -30,13 +37,11 @@ function parse(message) {
 
   var classification = nlp.classify(message);
   var subject = classification.subject.split(' ');
-  var url = subject[0];
-  // TODO: handle unknown message, improve URL identification
 
-  if (!url.match(/^https?\:/)) {
-    url = 'http://' + url;
+  var url;
+  if (subject[0].match(/https?\:\/\//)) {
+    url = slack.parseUrl(subject[0]);
   }
-
   return url;
 }
 
@@ -86,7 +91,7 @@ function report(url, cb) {
 
     } else {
 
-      console.log('Generating report');
+      console.log('Generating report for URL %s', url);
       var messages = [];
       Object.keys(results).forEach(function (key) {
 
@@ -96,7 +101,7 @@ function report(url, cb) {
         if (result.status && result.status === 'error') {
           status = 'inaccessible';
         } else {
-          status = (result.statusCode.toString().match(/^2??/)) ? 'accessible' : 'inaccessible';
+          status = (result.statusCode.toString().match(/^[2,4].?.?/)) ? 'accessible' : 'inaccessible';
         }
         message = util.format('%s is %s from %s', url, status, key);
         messages.push(message);
