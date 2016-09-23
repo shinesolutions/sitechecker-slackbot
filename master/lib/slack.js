@@ -11,7 +11,7 @@ function success(message) {
 // <http://amazon.com> into http://amazon.com
 // <http://amazon.com|amazon.com> into http://amazon.com
 function parseUrl(markupUrl) {
-  return markupUrl.replace(/^\</, '').replace(/\|.*$/, '').replace(/\>.*$/, '');
+  return markupUrl.replace(/^</, '').replace(/\|.*$/, '').replace(/\>.*$/, '');
 }
 
 exports.error = error;
