@@ -5,6 +5,10 @@
 SiteChecker Slackbot
 --------------------
 
+SiteChecker is a [Slack bot](https://www.wired.com/2015/08/slack-overrun-bots-friendly-wonderful-bots/) for checking whether a website is accessible from multiple locations on the planet.
+
+For example, Twitter has been [censored multiple times in various countries](https://en.wikipedia.org/wiki/Censorship_of_Twitter). So even though a website is accessible from your country, it might not be from another country. And you can ask SiteChecker bot "Is twitter.com up?" 
+
 [![Sample Interaction Screenshot](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/sample_interaction.jpg)](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/sample_interaction.jpg)
 
 Architecture
@@ -35,7 +39,9 @@ Specify custom stage:
 
     STAGE=dev make deps deploy remove
 
-Credits
--------
+Colophon
+--------
+
+This project is a submission to [AWS Serverless Chatbot Competition 2016](https://awschatbot.devpost.com/).
 
 SiteChecker Slackbot radar icon made by [Trinh Ho](http://www.flaticon.com/authors/trinh-ho) from [www.flaticon.com](http://www.flaticon.com) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
