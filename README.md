@@ -20,7 +20,9 @@ SiteChecker has two components, a bot that's configured on Slack, and a piece of
 
 The bot is a Slack [outgoing webhook](https://api.slack.com/outgoing-webhooks) custom integration.
 
-The infrastructure on AWS is implemented with master worker pattern. The master Lambda function receives POST requests from the Slack bot via an API Gateway, the master Lambda function then distributes the tasks for checking the website's accessibility to worker Lambda functions across multiple AWS regions.
+The infrastructure on AWS is implemented with master worker pattern. The master Lambda function receives POST requests from the Slack bot via an API Gateway, the master Lambda function then distributes the tasks for checking the website accessibility to worker Lambda functions across multiple AWS regions.
+
+Even though SiteChecker's current feature is limited to checking website accessibility, the architecture is suitable for any other cross-region checks. E.g. tracerouting from multiple cities, measuring response time from multiple cities.
 
 [![Architecture Diagram](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/architecture.jpg)](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/architecture.jpg)
 
@@ -28,6 +30,25 @@ Installation
 ------------
 
 TODO
+
+Configuration
+-------------
+
+Both master and worker can be configured in [master/conf/config.json](https://github.com/shinesolutions/sitechecker-slackbot/blob/master/master/conf/config.json) and [worker/conf/config.json](https://github.com/shinesolutions/sitechecker-slackbot/blob/master/worker/conf/config.json) files respectively.
+
+Master configuration:
+
+| Name          | Description |
+|---------------|-------------|
+| allowedTokens | An array of allowed Slack tokens. If any is specified, then only incoming requests with that token are accepted. If left empty, then all incoming requests are accepted. |
+| regions       | An array of objects with region name and description. |
+
+Worker configuration:
+
+| Name    | Description |
+|---------|-------------|
+| method  | HTTP method to be used for checking website accessibility. |
+| timeout | timeout in milliseconds for the HTTP request sent for checking the website. |
 
 Usage
 -----
