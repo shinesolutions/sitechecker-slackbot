@@ -5,9 +5,9 @@
 SiteChecker Slackbot
 --------------------
 
-SiteChecker is a [serverless](http://martinfowler.com/articles/serverless.html) [Slack bot](https://www.wired.com/2015/08/slack-overrun-bots-friendly-wonderful-bots/) for checking whether a website is accessible from multiple locations on the planet.
+SiteChecker is a [serverless](http://martinfowler.com/articles/serverless.html) [Slack bot](https://www.wired.com/2015/08/slack-overrun-bots-friendly-wonderful-bots/) for checking whether a website is up/down from multiple locations on the planet.
 
-For example, Twitter has been [censored multiple times in various countries](https://en.wikipedia.org/wiki/Censorship_of_Twitter). So even though a website is accessible from your country, it might not be from another country. You can ask SiteChecker bot **"Is twitter.com up?"**
+For example, Twitter has been [censored multiple times in various countries](https://en.wikipedia.org/wiki/Censorship_of_Twitter). So even though a website is available from your country, it might not be from another country. You can ask SiteChecker bot **"Is twitter.com up?"**
 
 [![Sample Interaction Screenshot](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/sample_interaction.jpg)](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/sample_interaction.jpg)
 
@@ -20,9 +20,9 @@ SiteChecker has two components, a bot that's configured on Slack, and a piece of
 
 The bot is a Slack [outgoing webhook](https://api.slack.com/outgoing-webhooks) custom integration.
 
-The infrastructure on AWS is implemented with master worker pattern. The master Lambda function receives POST requests from the Slack bot via an API Gateway, it parses the message using a simple natural language processing [speakeasy-nlp](https://www.npmjs.com/package/speakeasy-nlp) package in order to understand the message from Slack user. The master Lambda function then distributes the tasks for checking the website accessibility to worker Lambda functions across multiple AWS regions.
+The infrastructure on AWS is implemented with master worker pattern. The master Lambda function receives POST requests from the Slack bot via an API Gateway, it parses the message using a simple natural language processing [speakeasy-nlp](https://www.npmjs.com/package/speakeasy-nlp) package in order to understand the message from Slack user. The master Lambda function then distributes the tasks for checking the website availability to worker Lambda functions across multiple AWS regions.
 
-Even though SiteChecker's current feature is limited to checking website accessibility, the architecture is suitable for any other cross-region checks. E.g. tracerouting from multiple cities, measuring response time from multiple cities.
+Even though SiteChecker's current feature is limited to checking website availability, the architecture is suitable for any other cross-region checks. E.g. tracerouting from multiple cities, measuring response time from multiple cities.
 
 [![Architecture Diagram](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/architecture.jpg)](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/architecture.jpg)
 
@@ -34,7 +34,7 @@ TODO
 Configuration
 -------------
 
-Both master and worker can be configured in [master/conf/config.json](https://github.com/shinesolutions/sitechecker-slackbot/blob/master/master/conf/config.json) and [worker/conf/config.json](https://github.com/shinesolutions/sitechecker-slackbot/blob/master/worker/conf/config.json) files respectively.
+Master and worker Lambda functions can be configured in [master/conf/config.json](https://github.com/shinesolutions/sitechecker-slackbot/blob/master/master/conf/config.json) and [worker/conf/config.json](https://github.com/shinesolutions/sitechecker-slackbot/blob/master/worker/conf/config.json) files respectively.
 
 Master configuration:
 
@@ -47,7 +47,7 @@ Worker configuration:
 
 | Name    | Description |
 |---------|-------------|
-| method  | HTTP method to be used for checking website accessibility. |
+| method  | HTTP method to be used for checking website availability. |
 | timeout | timeout in milliseconds for the HTTP request sent for checking the website. |
 
 Usage
