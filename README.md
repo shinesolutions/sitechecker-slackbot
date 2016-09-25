@@ -11,7 +11,7 @@ For example, Twitter has been [censored multiple times in various countries](htt
 
 [![Sample Interaction Screenshot](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/sample_interaction.jpg)](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/sample_interaction.jpg)
 
-The locations where the checking is performed from are based on the available [AWS Lambda regions](http://docs.aws.amazon.com/general/latest/gr/rande.html#lambda_region). It currently only supports 8 locations, but the list will grow and it's easy to add to SiteChecker infrastructure.
+The locations where the checking is performed from are based on the available [AWS Lambda regions](http://docs.aws.amazon.com/general/latest/gr/rande.html#lambda_region). SiteChecker currently only supports 8 regions, but the list will grow and it's easy to add a new region to SiteChecker infrastructure.
 
 Architecture
 ------------
@@ -29,7 +29,34 @@ Even though SiteChecker's current feature is limited to checking website availab
 Installation
 ------------
 
-TODO
+There are two parts to install, the bot on Slack, and the infrastructure on AWS.
+
+Let's install the bot first by creating a Slack outgoing webhook custom integration.
+
+1. Go to your Slack account's custom integrations page at https://<account>.slack.com/apps/manage/custom-integrations .
+2. The page will show the available custom integrations. Click on **Outgoing WebHooks** link.
+3. Click **Add Configuration** button.
+4. Click **Add Outgoing WebHooks integration** button.
+5. Fill in the integration settings:
+    - **Channel**: select the channel where you want the bot to be available from.
+    - **Trigger Word(s)**: specify words to trigger the bot, e.g. **sitechecker:**
+    - **URL(s)**: leave this empty for now, we'll go back to this option after the infrastructure is built.
+    - **Token**: Slack will generate the token for you, this token will be configured in master Lambda function.
+    - **Descriptive Label**: description for this custom integration, e.g. **SiteChecker Outgoing WebHook**
+    - **Customize Name**: the name of your bot, e.g. **SiteChecker**
+    - **Customize Icon**: upload SiteChecker [radar icon](https://raw.githubusercontent.com/shinesolutions/sitechecker-slackbot/master/icon.png)
+6. Click **Save Settings** button.
+
+Next, the second part is to create the infrastructure on AWS.
+
+1. [Install node.js](https://nodejs.org/en/download/package-manager/) .
+2. Set up [AWS credential](https://serverless.com/framework/docs/providers/aws/setup/), to be used by [Serverless framework](https://serverless.com/).
+3. Clone the repository: `git clone https://github.com/shinesolutions/sitechecker-slackbot` .
+4. Configure the Slack token from the outgoing webhook custom integration settings in `master/conf/config.json` . Add the token to `allowedTokens` array property.
+5. Install tools and dependencies: `make tools deps` .
+6. Build the worker Lambda functions: `make deploy-workers` .
+7. Build the master Lambda function and API Gateway: `make deploy-master` . The output of this command will show a POST endpoint, e.g. `https://j7xbbs9m39.execute-api.us-east-1.amazonaws.com/prod/handle`
+8. Return to the Slack Outgoing WebHook custom integration settings page, and copy paste the POST endpoint from the command output to **URL(s)** setting, then click **Save Settings** button.
 
 Configuration
 -------------
@@ -50,14 +77,14 @@ Worker configuration:
 | method  | HTTP method to be used for checking website availability. |
 | timeout | timeout in milliseconds for the HTTP request sent for checking the website. |
 
-Usage
------
+Development
+-----------
 
-Install [Serverless](https://serverless.com/):
+Install [Serverless](https://serverless.com/) framework and other tools:
 
     make tools
 
-Download service dependencies:
+Download library dependencies:
 
     make deps
 
@@ -78,4 +105,4 @@ Colophon
 
 This project is a submission to [AWS Serverless Chatbot Competition 2016](https://awschatbot.devpost.com/).
 
-SiteChecker Slackbot radar icon made by [Trinh Ho](http://www.flaticon.com/authors/trinh-ho) from [www.flaticon.com](http://www.flaticon.com) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
+SiteChecker radar icon made by [Trinh Ho](http://www.flaticon.com/authors/trinh-ho) from [www.flaticon.com](http://www.flaticon.com) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
