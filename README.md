@@ -5,7 +5,7 @@
 SiteChecker Slackbot
 --------------------
 
-SiteChecker is a [serverless](http://martinfowler.com/articles/serverless.html) [Slack bot](https://www.wired.com/2015/08/slack-overrun-bots-friendly-wonderful-bots/) for checking whether a website is up/down from multiple locations on the planet.
+SiteChecker is a [serverless](http://martinfowler.com/articles/serverless.html) [Slack bot](https://www.wired.com/2015/08/slack-overrun-bots-friendly-wonderful-bots/) for checking whether a website can be reached from multiple locations on the planet.
 
 For example, Twitter has been [censored multiple times in various countries](https://en.wikipedia.org/wiki/Censorship_of_Twitter). So even though a website is available from your country, it might not be from another country. You can ask SiteChecker bot **"Is twitter.com up?"**
 
@@ -20,7 +20,7 @@ SiteChecker has two components, a bot that's configured on Slack, and a piece of
 
 The bot is a Slack [outgoing webhook](https://api.slack.com/outgoing-webhooks) custom integration.
 
-The infrastructure on AWS is implemented with master worker pattern. The master Lambda function receives POST requests from the Slack bot via an API Gateway, it parses the message using a simple natural language processing [speakeasy-nlp](https://www.npmjs.com/package/speakeasy-nlp) package in order to understand the message from Slack user. The master Lambda function then distributes the tasks for checking the website availability to worker Lambda functions across multiple AWS regions.
+The infrastructure on AWS is implemented with master worker pattern. The master Lambda function receives POST requests from the Slack bot via an API Gateway, it parses the message using a simple natural language processing [speakeasy-nlp](https://www.npmjs.com/package/speakeasy-nlp) package in order to understand the message from Slack user and to identify the website to be checked. The master Lambda function then distributes the tasks for checking that website to worker Lambda functions across multiple AWS regions.
 
 Even though SiteChecker's current feature is limited to checking website availability, the architecture is suitable for any other cross-region checks. E.g. tracerouting from multiple cities, measuring response time from multiple cities.
 

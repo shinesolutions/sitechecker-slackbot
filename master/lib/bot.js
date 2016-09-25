@@ -101,11 +101,11 @@ function report(url, cb) {
 
         var status;
         if (result.status && result.status === 'error') {
-          status = 'inaccessible';
+          status = 'can\'t be reached';
         } else {
-          status = (result.statusCode.toString().match(/^[2,4].?.?/)) ? 'accessible' : 'inaccessible';
+          status = (result.statusCode.toString().match(/^[2,4].?.?/)) ? 'can be reached' : 'can\'t be reached';
         }
-        message = util.format('%s is %s from %s', url, status, key);
+        message = util.format('%s %s from %s', url, status, key);
         messages.push(message);
       });
       cb(null, slack.success(messages.join('\n')));
