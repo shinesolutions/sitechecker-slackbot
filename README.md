@@ -33,7 +33,7 @@ There are two parts to install, the bot on Slack, and the infrastructure on AWS.
 
 Let's install the bot first by creating a Slack outgoing webhook custom integration.
 
-1. Go to your Slack account's custom integrations page at https://<account>.slack.com/apps/manage/custom-integrations .
+1. Go to your Slack account's custom integrations page at `https://account.slack.com/apps/manage/custom-integrations` .
 2. The page will show the available custom integrations. Click on **Outgoing WebHooks** link.
 3. Click **Add Configuration** button.
 4. Click **Add Outgoing WebHooks integration** button.
@@ -55,7 +55,7 @@ Next, the second part is to create the infrastructure on AWS.
 4. Configure the Slack token from the outgoing webhook custom integration settings in `master/conf/config.json` . Add the token to `allowedTokens` array property.
 5. Install tools and dependencies: `make tools deps` .
 6. Build the worker Lambda functions: `make deploy-workers` .
-7. Build the master Lambda function and API Gateway: `make deploy-master` . The output of this command will show a POST endpoint, e.g. `https://j7xbbs9m39.execute-api.us-east-1.amazonaws.com/prod/handle`
+7. Build the master Lambda function and API Gateway: `make deploy-master` . The output of this command will show a POST endpoint, e.g. `https://id.execute-api.us-east-1.amazonaws.com/prod/handle`
 8. Return to the Slack Outgoing WebHook custom integration settings page, and copy paste the POST endpoint from the command output to **URL(s)** setting, then click **Save Settings** button.
 
 Configuration
