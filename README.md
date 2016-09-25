@@ -7,7 +7,7 @@ SiteChecker Slackbot
 
 SiteChecker is a [serverless](http://martinfowler.com/articles/serverless.html) [Slack bot](https://www.wired.com/2015/08/slack-overrun-bots-friendly-wonderful-bots/) for checking whether a website can be reached from multiple locations on the planet.
 
-For example, Twitter has been [censored multiple times in various countries](https://en.wikipedia.org/wiki/Censorship_of_Twitter). So even though a website is available from your country, it might not be from another country. You can ask SiteChecker bot **"Is twitter.com up?"**
+For example, Twitter has been [censored multiple times in various countries](https://en.wikipedia.org/wiki/Censorship_of_Twitter). So even though a website is available from your country, it might not be from another country. You can ask SiteChecker bot **"sitechecker: Is twitter.com up?"**
 
 [![Sample Interaction Screenshot](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/sample_interaction.jpg)](https://raw.github.com/shinesolutions/sitechecker-slackbot/master/docs/sample_interaction.jpg)
 
@@ -57,6 +57,12 @@ Next, the second part is to create the infrastructure on AWS.
 6. Build the worker Lambda functions: `make deploy-workers` .
 7. Build the master Lambda function and API Gateway: `make deploy-master` . The output of this command will show a POST endpoint, e.g. `https://id.execute-api.us-east-1.amazonaws.com/prod/handle`
 8. Return to the Slack Outgoing WebHook custom integration settings page, and copy paste the POST endpoint from the command output to **URL(s)** setting, then click **Save Settings** button.
+
+Usage
+-----
+
+1. Join the Slack channel configured in the bot setting.
+2. Start asking SiteChecker bot **"sitechecker: Is twitter.com up?"**, **"sitechecker: Is facebook.com down?"** .
 
 Configuration
 -------------
