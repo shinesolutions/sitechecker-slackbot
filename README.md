@@ -67,7 +67,7 @@ Usage
 Configuration
 -------------
 
-Master and worker Lambda functions can be configured in [master/conf/config.json](https://github.com/shinesolutions/sitechecker-slackbot/blob/master/master/conf/config.json) and [worker/conf/config.json](https://github.com/shinesolutions/sitechecker-slackbot/blob/master/worker/conf/config.json) files respectively.
+SiteChecker Slack bot master and worker Lambda functions can be configured in [master/conf/config.json](https://github.com/shinesolutions/sitechecker-slackbot/blob/master/master/conf/config.json) and [worker/conf/config.json](https://github.com/shinesolutions/sitechecker-slackbot/blob/master/worker/conf/config.json) files respectively.
 
 Master configuration:
 
