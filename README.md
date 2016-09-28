@@ -109,6 +109,8 @@ Specify custom stage:
 Colophon
 --------
 
-This project is a submission to [AWS Serverless Chatbot Competition 2016](https://awschatbot.devpost.com/).
+SiteChecker radar icon made by [Trinh Ho](http://www.flaticon.com/authors/trinh-ho) from [www.flaticon.com](http://www.flaticon.com) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/).
 
-SiteChecker radar icon made by [Trinh Ho](http://www.flaticon.com/authors/trinh-ho) from [www.flaticon.com](http://www.flaticon.com) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
+[Demo video](https://www.youtube.com/watch?v=aKYoTsYbVAc) background music [My Love (Rework) by James Mac & VALL](https://soundcloud.com/jamesmacdj/my-love-rework-james-mac-vall).
+
+This project is a submission to [AWS Serverless Chatbot Hackathon 2016](https://awschatbot.devpost.com/).
