@@ -1,6 +1,6 @@
 {
   "name": "sitechecker-slackbot-master",
-  "description": "Serverless slack bot for checking website availability from multiple locations on the planet",
+  "description": "Serverless Slack bot for checking website availability from multiple locations on the planet",
   "keywords": ["serverless", "slack", "bot", "aws", "lambda", "website", "availability"],
   "version": "0.0.1",
   "private": true,
