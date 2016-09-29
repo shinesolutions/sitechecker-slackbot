@@ -113,4 +113,4 @@ SiteChecker radar icon made by [Trinh Ho](http://www.flaticon.com/authors/trinh-
 
 [Demo video](https://www.youtube.com/watch?v=aKYoTsYbVAc) background music [My Love (Rework) by James Mac & VALL](https://soundcloud.com/jamesmacdj/my-love-rework-james-mac-vall).
 
-This project is a submission to [AWS Serverless Chatbot Hackathon 2016](https://awschatbot.devpost.com/).
+This project is a submission to [AWS Serverless Chatbot Hackathon 2016](https://awschatbot.devpost.com/) - with self-imposed 24-hour total time limit scattered across several days/nights..
