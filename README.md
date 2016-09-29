@@ -13,6 +13,8 @@ For example, Twitter has been [censored multiple times in various countries](htt
 
 The locations where the checking is performed from are based on the available [AWS Lambda regions](http://docs.aws.amazon.com/general/latest/gr/rande.html#lambda_region). SiteChecker currently only supports 8 regions, but the list will grow and it's easy to add a new region to SiteChecker infrastructure.
 
+The most interesting region to add when AWS Lambda is available later is China (Beijing), for checking whether a website is available behind by [The Great Firewall of China](https://en.wikipedia.org/wiki/Great_Firewall).
+
 Architecture
 ------------
 
